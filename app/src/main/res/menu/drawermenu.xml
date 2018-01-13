@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="10dp">
+
+
+
+    <item android:title="Sounds"
+        android:id="@+id/nav_item_inbox"
+        android:layout_marginTop="10dp"
+        android:icon="@drawable/soundicon" />
+
+    <item android:title="App teilen"
+        android:id="@+id/teilen"
+        android:layout_marginTop="10dp"
+        android:icon="@drawable/shareimg" />
+
+    <item android:title="Mehr Apps: ">
+        <menu>
+
+            <item
+                android:id="@+id/soundboardapps"
+                android:icon="@drawable/playstore"
+                android:title="Alle Soundboards" />
+            <item
+                android:id="@+id/buttonapps"
+                android:icon="@drawable/button"
+                android:title="Alle Button Apps" />
+
+        </menu>
+    </item>
+
+
+    <item android:title="Kontakt">
+        <menu>
+            <item
+                android:id="@+id/instagram"
+                android:icon="@drawable/instagramm"
+                android:title="Instagram" />
+            <item
+                android:id="@+id/email"
+                android:icon="@drawable/emailicon"
+                android:title="E-Mail schreiben" />
+            <item
+                android:id="@+id/rechtliches"
+                android:icon="@drawable/gesetzt"
+                android:title="Rechtliches" />
+
+
+        </menu>
+    </item>
+
+</menu>
