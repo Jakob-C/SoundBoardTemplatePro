@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-                if (menuItem.getItemId() == R.id.button) {
+                if (menuItem.getItemId() == R.id.buttonapps) {
                     String url = "https://play.google.com/store/apps/developer?id=PentaButtons";
 
                     Intent intent = new Intent();

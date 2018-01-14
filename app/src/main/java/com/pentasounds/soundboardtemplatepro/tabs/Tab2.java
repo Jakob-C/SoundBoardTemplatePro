@@ -123,11 +123,16 @@ public class Tab2 extends Fragment {
 
 
                             case 0:
-                                savefile(pos,true);
-                                Intent share = new Intent(Intent.ACTION_SEND);
-                                share.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory().toString() +"/"+R.string.foldername+"/"+ items1[position]+".mp3"));
-                                share.setType("audio/mp3");
-                                startActivity(Intent.createChooser(share, "Sound teilen über..."));
+                                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+                                }
+                                else{
+                                    savefile(pos, true);
+                                    Intent share = new Intent(Intent.ACTION_SEND);
+                                    share.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory().toString() + "/" + R.string.foldername + "/" + items1[position] + ".mp3"));
+                                    share.setType("audio/mp3");
+                                    startActivity(Intent.createChooser(share, "Sound teilen über..."));
+                                }
                                 break;
 
                             case 1:
