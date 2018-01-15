@@ -137,14 +137,66 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (menuItem.getItemId() == R.id.instagram) {
-                    String url = "https://www.redirectioninstapenta.lima-city.de";
 
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    onPause();
-                    startActivity(intent);
+
+
+                    AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
+                    a_builder.setMessage(R.string.instagram_text)
+                            .setCancelable(true)
+                            .setPositiveButton("Ja will ich", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    String url = "https://www.redirection.lima-city.de/links/instagram.html";
+
+                                    Intent intent = new Intent();
+                                    intent.setAction(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse(url));
+                                    onPause();
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int i) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert = a_builder.create();
+                    alert.setTitle("Instagram");
+                    alert.show();
                 }
+
+                if (menuItem.getItemId() == R.id.paypaldialog) {
+
+
+
+                    AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
+                    a_builder.setMessage(R.string.paypal_text)
+                            .setCancelable(true)
+                            .setPositiveButton("Zu PayPal", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    String url = "https://www.redirection.lima-city.de/links/paypal.html";
+
+                                    Intent intent = new Intent();
+                                    intent.setAction(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse(url));
+                                    onPause();
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("Ne, bin gerade Broke", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int i) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert = a_builder.create();
+                    alert.setTitle("Unterstützung");
+                    alert.show();
+                }
+
+
 
                 if (menuItem.getItemId() == R.id.email) {
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
