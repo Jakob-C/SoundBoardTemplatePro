@@ -2,6 +2,7 @@ package com.pentasounds.soundboardtemplatepro;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,13 @@ import com.pentasounds.soundboardtemplatepro.tabs.Tab1;
 import com.pentasounds.soundboardtemplatepro.tabs.Tab2;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public MediaPlayer mp;
@@ -33,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean isTesting;
 
+    public static String user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +50,23 @@ public class MainActivity extends AppCompatActivity {
 
 
         isTesting=false;
+
+        //zufallszehl holen
+        SharedPreferences prefs = getSharedPreferences("values", 0);
+        user_id = prefs.getString("user_id", "");
+        if(user_id.equals("")){
+            Random rnd = new Random();
+            int zufallszahl;
+
+            for (int i=0; i<10; i++){
+                zufallszahl = 1 + rnd.nextInt(9);
+                user_id=user_id+zufallszahl;
+            }
+            SharedPreferences prefs_writing = getSharedPreferences("values", 0);
+            SharedPreferences.Editor editor =prefs_writing.edit();
+            editor.putString("user_id", user_id);
+            editor.commit();
+        }
 
         final File FILES_PATH = new File(Environment.getExternalStorageDirectory(), "Android/data/"+ getText(R.string.package_name) +"/files");
 
@@ -61,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
 
         }
+
+        saveToWeb("App start");
 
 
         ActivityCompat.requestPermissions(MainActivity.this,
@@ -104,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(menuItem.getItemId() == R.id.teilen){
+                    saveToWeb("share_app");
+
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, getText(R.string.app_name));
@@ -117,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (menuItem.getItemId() == R.id.soundboardapps) {
+                    saveToWeb("playstore_soundboardapps");
+
                     String url = "https://play.google.com/store/apps/developer?id=PentaSounds";
 
                     Intent intent = new Intent();
@@ -127,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (menuItem.getItemId() == R.id.buttonapps) {
+                    saveToWeb("playstore_buttonapps");
+
                     String url = "https://play.google.com/store/apps/developer?id=PentaButtons";
 
                     Intent intent = new Intent();
@@ -138,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == R.id.instagram) {
 
-
+                    saveToWeb("instagram");
 
                     AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
                     a_builder.setMessage(R.string.instagram_text)
@@ -167,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (menuItem.getItemId() == R.id.paypaldialog) {
+                    saveToWeb("paypal_dialog");
 
 
 
@@ -176,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                             .setPositiveButton("Zu PayPal", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                    saveToWeb("paypal");
                                     String url = "https://www.redirection.lima-city.de/links/paypal.html";
 
                                     Intent intent = new Intent();
@@ -199,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (menuItem.getItemId() == R.id.email) {
+                    saveToWeb("email");
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                             "mailto","pentasounds@gmail.com", null));
                     emailIntent.putExtra(Intent.EXTRA_TEXT,"[Packagename:" + getText(R.string.package_name) +  "  ---Diese Info nicht löschen---]\n\n\n\n\n (Deine Nachricht)");
@@ -207,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (menuItem.getItemId() == R.id.rechtliches) {
+                    saveToWeb("rechtliches");
                     AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
                     a_builder.setMessage(R.string.rechtliches)
                             .setCancelable(true)
@@ -268,6 +307,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void saveToWeb(final String type){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String textparam = "text1=" + URLEncoder.encode(";User;" + user_id + ";action;" + type +";", "UTF-8");
+                    URL scripturl = new URL(getText(R.string.stats_link).toString());
+                    HttpURLConnection connection = (HttpURLConnection) scripturl.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    connection.setFixedLengthStreamingMode(textparam.getBytes().length);
+                    OutputStreamWriter contentWriter = new OutputStreamWriter(connection.getOutputStream());
+                    contentWriter.write(textparam);
+                    contentWriter.flush();
+                    contentWriter.close();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    Log.e("###","no internet conection");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e("###","no internet conection");
+                }
+            }
+        }).start();
+
+    }
 
 
     public void cleanUpMediaPlayer() {

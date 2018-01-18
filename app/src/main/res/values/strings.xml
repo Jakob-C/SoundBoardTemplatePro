@@ -25,6 +25,6 @@
     <string name="paypal_text">Wir sind zwei 17-jährige App-Entwickler, welche die Idee hatten, die lustigsten Sounds des Internets in Apps zusammenzufassen. So kann jeder sie hören und unterhalten werden. Wenn du diese Idee gut findest, spende uns doch was über PayPal um uns zu unterstützen.\nViel Spaß mit allen weiteren Apps die durch deine Unterstützung möglich werden :D</string>
     <string name="instagram_text">Du willst immer auf dem Laufenden sein, wann wir neue Apps rausbringen und mitbekommen wie sie programmiert werden?\n\nDann folge doch unserer offiziellen Instagram Seite!</string>
 
-
+    <string name="stats_link">https://redirection.lima-city.de/stats/soundboardtemplate/</string>
 
 </resources>
