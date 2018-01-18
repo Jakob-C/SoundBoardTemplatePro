@@ -89,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        saveToWeb("App start");
+        saveToWeb("app_start");
 
 
-        ActivityCompat.requestPermissions(MainActivity.this,
-                new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
-                1);
+//        ActivityCompat.requestPermissions(MainActivity.this,
+//                new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+//                1);
         /**
          *Setup the DrawerLayout and NavigationView
          */
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    String textparam = "text1=" + URLEncoder.encode(";User;" + user_id + ";action;" + type +";", "UTF-8");
+                    String textparam = "text1=" + URLEncoder.encode(";User;" + user_id + ";action;" +type +";", "UTF-8");
                     URL scripturl = new URL(getText(R.string.stats_link).toString());
                     HttpURLConnection connection = (HttpURLConnection) scripturl.openConnection();
                     connection.setDoOutput(true);
