@@ -33,10 +33,10 @@
 
     <item android:title="Kontakt">
         <menu>
-            <item
-                android:id="@+id/paypaldialog"
-                android:icon="@drawable/paypal"
-                android:title="Unterstützung" />
+            <!--<item-->
+                <!--android:id="@+id/paypaldialog"-->
+                <!--android:icon="@drawable/paypal"-->
+                <!--android:title="Unterstützung" />-->
             <item
                 android:id="@+id/instagram"
                 android:icon="@drawable/instagramm"
