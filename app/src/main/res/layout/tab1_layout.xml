@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context="com.penta.sounds.soundboardprotemplate.MainActivity"
-
-    android:id="@+id/kommentarelayout">
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tab1">
 
 
     <com.google.android.gms.ads.AdView
@@ -24,7 +20,7 @@
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/kommentareGridView"
+        android:id="@+id/tabOneGridView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:numColumns="auto_fit"

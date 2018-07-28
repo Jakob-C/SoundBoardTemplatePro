@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    // Creates sidebar and sets onClickListeners
     public void sidebar(){
-        mNavigationView = (NavigationView) findViewById(R.id.shitstuff);
+        mNavigationView = (NavigationView) findViewById(R.id.navigationView);
         mNavigationView.setItemIconTintList(null);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -49,17 +49,17 @@ public class MainActivity extends AppCompatActivity {
                 mDrawerLayout.closeDrawers();
 
                 switch (menuItem.getItemId()){
-                    case R.id.nav_item_inbox:
+                    case R.id.sounds:
                         FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                         xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
                         break;
 
-                    case R.id.teilen:
+                    case R.id.share:
                         Intent shareIntent = new Intent(Intent.ACTION_SEND);
                         shareIntent.setType("text/plain");
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, getText(R.string.app_name));
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, getText(R.string.text_fuers_teilen_vor_name) + " " +  getText(R.string.app_name) + " " + getText(R.string.text_fuers_teilen_nach_name) +"\n\n" + getText(R.string.link_zur_app));
-                        startActivity(Intent.createChooser(shareIntent,  "Share via..."));
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, getText(R.string.share_text) + " " +  getText(R.string.app_name) + "\n\n" + getText(R.string.playstore_link));
+                        startActivity(Intent.createChooser(shareIntent,  getText(R.string.share_via)));
                         break;
 
                 }
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Is listening which sound on Tab1 has been clicked
     public void TabOneItemClicked(int position) {
         cleanUpMediaPlayer();
         mp=MediaPlayer.create(MainActivity.this, Tab1.soundfiles[position]);
@@ -77,14 +78,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    // Is listening which sound on Tab2 has been clicked
     public void TabTwoItemClicked(int position) {
         cleanUpMediaPlayer();
         mp=MediaPlayer.create(MainActivity.this, Tab2.soundfiles[position]);
         mp.start();
     }
 
-
+    // Is listening which sound on Tab3 has been clicked
     public void TabThreeItemClicked ( int position){
         cleanUpMediaPlayer();
         mp=MediaPlayer.create(MainActivity.this, Tab3.soundfiles[position]);
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Cleans MediaPlayer
     public void cleanUpMediaPlayer() {
         if (mp != null) {
             try {
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    // Access external storage
     public void externalStorageAccess(){
         final File FILES_PATH = new File(Environment.getExternalStorageDirectory(), "Android/data/"+ getText(R.string.package_name) +"/files");
         if (Environment.MEDIA_MOUNTED.equals(
@@ -115,12 +117,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.w("error", "Could not create " + FILES_PATH);
             }
         } else {
-            Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
             finish();
         }
     }
 
-
+    // Creates toolbar Tabs
     public void toolbarTabs(){
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();

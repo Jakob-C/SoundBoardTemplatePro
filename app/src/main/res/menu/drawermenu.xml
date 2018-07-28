@@ -5,13 +5,13 @@
 
 
 
-    <item android:title="Sounds"
-        android:id="@+id/nav_item_inbox"
+    <item android:title="@string/menu_title_sound"
+        android:id="@+id/sounds"
         android:layout_marginTop="10dp"
         android:icon="@drawable/soundicon" />
 
-    <item android:title="App teilen"
-        android:id="@+id/teilen"
+    <item android:title="@string/menu_title_share"
+        android:id="@+id/share"
         android:layout_marginTop="10dp"
         android:icon="@drawable/shareimg" />
 

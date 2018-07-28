@@ -4,5 +4,5 @@
         android:state_pressed="true" />
     <item android:drawable="@drawable/button_state_pressed"
         android:state_focused="true" />
-    <item android:drawable="@drawable/butttonbackround" />
+    <item android:drawable="@drawable/buttton_state_normal" />
 </selector>

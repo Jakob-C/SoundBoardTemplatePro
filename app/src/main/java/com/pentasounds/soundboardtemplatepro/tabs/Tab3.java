@@ -40,17 +40,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * Created by Ratan on 7/29/2015.
- */
 public class Tab3 extends Fragment {
     GridView myGridView;
     int position;
     View layout;
-    //    File soundfile;
     File directory;
-    String filename;
-    public String[] items1 ={
+
+
+// Important notice: make sure that the number of items in "String[] items" is equal to the number of items in "soundfiles"!
+
+    // Here you can change the displayed text on the buttons in Tab3
+    public String[] items ={
             "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
             "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
             "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
@@ -60,6 +60,7 @@ public class Tab3 extends Fragment {
             "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha"
     };
 
+    // Here you can change the mp3 files of the buttons in Tab3
     public static int[] soundfiles ={
             R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
             R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
@@ -75,46 +76,39 @@ public class Tab3 extends Fragment {
             R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
             R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
             R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-
     };
+
+
+
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView=inflater.inflate(R.layout.tab3_layout,container,false);
-
-        layout=rootView.findViewById(R.id.lustiges);
+        layout=rootView.findViewById(R.id.tab3);
         File storage = Environment.getExternalStorageDirectory();
         directory = new File(storage.getAbsolutePath() +"/"+R.string.foldername+"/");
-//        soundfile=new File(directory, filename);
 
+        // Banner Ad
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        myGridView = (GridView)rootView.findViewById(R.id.lustigesGridView);
-        myGridView.setAdapter(new Tab3.CustomGridAdapter(getActivity(), items1));
+        // GridView
+        myGridView = (GridView)rootView.findViewById(R.id.tabThreeGridView);
+        myGridView.setAdapter(new CustomGridAdapter(getActivity(), items));
         myGridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                                            final int pos, long id) {
-
                 position=pos;
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Light_Dialog_Alert);
-                builder.setItems(new CharSequence[]{"Sound teilen", "Sound setzen als..."}, new DialogInterface.OnClickListener(){
+                builder.setItems(new CharSequence[]{getText(R.string.share_sound_title), getText(R.string.set_tone_as_title)}, new DialogInterface.OnClickListener(){
 
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
-
-
-
-
-
-                        // Decide on the users choice which information will be send to a method that handles the settings for all kinds of system audio
-                        switch (which){
-
-
+                    public void onClick(DialogInterface dialog, int pos){
+                        switch (pos){
                             case 0:
                                 if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
@@ -122,40 +116,32 @@ public class Tab3 extends Fragment {
                                 else{
                                     savefile(pos, true);
                                     Intent share = new Intent(Intent.ACTION_SEND);
-                                    share.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory().toString() + "/" + R.string.foldername + "/" + items1[position] + ".mp3"));
+                                    share.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory().toString() + "/" + R.string.foldername + "/" + items[position] + ".mp3"));
                                     share.setType("audio/mp3");
-                                    startActivity(Intent.createChooser(share, "Sound teilen über..."));
+                                    startActivity(Intent.createChooser(share, getText(R.string.share_sound_via)));
                                 }
                                 break;
-
                             case 1:
-
                                 requestPermissions();
-
                                 if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                                         if(Settings.System.canWrite(getContext())){
                                             buildalertdielog_withpermissions();
                                             savefile(pos,false);
                                         }
-                                    }else{
+                                    }
+                                    else{
                                         buildalertdielog_withpermissions();
                                         savefile(pos, false);
                                     }
                                 }
-
-
                                 break;
                         }
                     }
                 });
                 builder.create();
                 builder.show();
-
-
-
                 return true;
-
             }
         });
         return rootView;
@@ -163,9 +149,8 @@ public class Tab3 extends Fragment {
 
 
 
-
+    // CustomGrid Adapter
     public class CustomGridAdapter extends BaseAdapter {
-
         private Context context;
         private String[] items;
         LayoutInflater inflater;
@@ -175,9 +160,6 @@ public class Tab3 extends Fragment {
             this.items = items;
             inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
-
-
-
 
         @Override
         public int getCount() {
@@ -206,45 +188,28 @@ public class Tab3 extends Fragment {
 
                 @Override
                 public void onClick(View v) {
-
-                        if (context instanceof MainActivity) {
-                            ((MainActivity) context).TabThreeItemClicked(position);
-                        }
-
+                    if (context instanceof MainActivity) {
+                        ((MainActivity) context).TabThreeItemClicked(position);
+                    }
                 }
             });
 
             return convertView;
         }
-
-
     }
 
+
+    // check if the permission to write external storage for sharing and setting sounds isn't already granted, if not -> shows a snackbar to get the permission (neccessary for setting sounds as ringtone etc.)
     private void requestPermissions(){
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-
-            // Check if the permission to write and read the users external storage is not granted
-            // You need this permission if you want to share sounds via WhatsApp or the like
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-
-                // You can log this little text if you want to see if this method works in your Android Monitor
-                //Log.i(LOG_TAG, "Permission not granted");
-
-                // If the permission is not granted request it
                 ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
             }
-
-            // Check if the permission to write the users settings is not granted
-            // You need this permission to set a sound as ringtone or the like
             if(!Settings.System.canWrite(getContext())){
-
-                // Displays a little bar on the bottom of the activity with an OK button that will open a so called permission management screen
-                Snackbar.make(layout, "The app needs access to your settings", Snackbar.LENGTH_INDEFINITE).setAction("OK",
+                Snackbar.make(layout, getText(R.string.notice_that_app_needs_access_to_settings), Snackbar.LENGTH_INDEFINITE).setAction("OK",
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
                                 Context context = v.getContext();
                                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                                 intent.setData(Uri.parse("package:" + context.getPackageName()));
@@ -253,40 +218,39 @@ public class Tab3 extends Fragment {
                             }
                         }).show();
             }
-
         }
-
-
     }
+
+
+    // Builds dialog for setting ringtone etc.
     public void buildalertdielog_withpermissions(){
         AlertDialog.Builder builder;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
             builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Light_Dialog_Alert);
-        } else{
-            builder = new AlertDialog.Builder(getContext(), AlertDialog.THEME_HOLO_LIGHT);
-
         }
-        builder.setItems(new CharSequence[]{"Klingelton", "Nachrichtenton", "Alarmton"}, new DialogInterface.OnClickListener(){
+        else{
+            builder = new AlertDialog.Builder(getContext(), AlertDialog.THEME_HOLO_LIGHT);
+        }
+
+        builder.setItems(new CharSequence[]{getText(R.string.ringtone_title), getText(R.string.notification_title), getText(R.string.alarm_title)}, new DialogInterface.OnClickListener(){
 
             @Override
-            public void onClick(DialogInterface dialog, int which){
-
-                // Decide on the users choice which information will be send to a method that handles the settings for all kinds of system audio
-                switch (which){
+            public void onClick(DialogInterface dialog, int pos){
+                switch (pos){
 
                     // Ringtone
                     case 0:
-                        Toast.makeText(getContext(), "Klingelton", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getText(R.string.ringtone_title), Toast.LENGTH_SHORT).show();
                         setTone(1);
                         break;
                     // Notification
                     case 1:
-                        Toast.makeText(getContext(), "Nachrichtenton", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getText(R.string.notification_title), Toast.LENGTH_SHORT).show();
                         setTone(2);
                         break;
                     // Alarmton
                     case 2:
-                        Toast.makeText(getContext(), "Alarmton", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getText(R.string.alarm_title), Toast.LENGTH_SHORT).show();
                         setTone(3);
                         break;
                 }
@@ -297,71 +261,46 @@ public class Tab3 extends Fragment {
     }
 
 
+    // Saves sounds for sharing or saving as ringtone etc.
     public void savefile(int pos, boolean sharing){
         File file;
-        // Get the path to the users external storage
         File storage = Environment.getExternalStorageDirectory();
-        // Define the directory path to the soundboard apps folder
-        // Change my_soundboard to whatever you want as your folder but keep the slash
-        // TODO: When changing the path be sure to also modify the path in filepaths.xml (res/xml/filepaths.xml)
         File directory = new File(storage.getAbsolutePath() +"/"+R.string.foldername+"/");
-        // Creates the directory if it doesn't exist
-        // mkdirs() gives back a boolean. You can use it to do some processes as well but we don't really need it.
         directory.mkdirs();
 
-        // Finally define the file by giving over the directory and the filename
         if(sharing){
-            file = new File(directory, items1[position]+".mp3");
-        }else{
-            file = new File(directory, items1[position]);
+            file = new File(directory, items[position]+".mp3");
+        }
+        else{
+            file = new File(directory, items[position]);
         }
 
-
-        // Define an InputStream that will read the data from your sound-raw.mp3 file into a buffer
         InputStream in = this.getResources().openRawResource(soundfiles[pos]);
-
         try{
-
-            // Log the name of the sound that is being saved
-            Log.e("Saving sound ","#############");
-
-            // Define an OutputStream/FileOutputStream that will write the buffer data into the sound.mp3 on the external storage
             OutputStream out = new FileOutputStream(file);
-            // Define a buffer of 1kb (you can make it a little bit bigger but 1kb will be adequate)
             byte[] buffer = new byte[1024];
-
             int len;
-            // Write the data to the sound.mp3 file while reading it from the sound-raw.mp3
-            // if (int) InputStream.read() returns -1 stream is at the end of file
             while ((len = in.read(buffer, 0, buffer.length)) != -1){
                 out.write(buffer, 0 , len);
             }
 
-            // Close both streams
             in.close();
             out.close();
-
-
-
-        } catch (IOException e){
-
-            // Log error if process failed
-            Log.e("Failed to save file: " ,"####################");
+        }
+        catch (IOException e){
+            Log.e("Failed to save file: " ,"###");
         }
     }
 
+
+    // Sets sounds as Ringtone, Notification or Alarm
     public void setTone(int action){
-        File soundfile=new File(directory, items1[position]);
+        File soundfile=new File(directory, items[position]);
         try{
 
-            // Put all informations about the audio into ContentValues
             ContentValues values = new ContentValues();
-
-            // DATA stores the path to the file on disk
             values.put(MediaStore.MediaColumns.DATA, soundfile.getAbsolutePath());
-            // TITLE stores... guess what? Right, the title. GENIUS
-            values.put(MediaStore.MediaColumns.TITLE, items1[position]);
-            // MIME_TYPE stores the type of the data send via the MediaProvider
+            values.put(MediaStore.MediaColumns.TITLE, items[position]);
             values.put(MediaStore.MediaColumns.MIME_TYPE, "audio/*");
 
             switch (action){
@@ -372,12 +311,14 @@ public class Tab3 extends Fragment {
                     values.put(MediaStore.Audio.Media.IS_NOTIFICATION, false);
                     values.put(MediaStore.Audio.Media.IS_ALARM, false);
                     break;
+
                 // Notification
                 case 2:
                     values.put(MediaStore.Audio.Media.IS_RINGTONE, false);
                     values.put(MediaStore.Audio.Media.IS_NOTIFICATION, true);
                     values.put(MediaStore.Audio.Media.IS_ALARM, false);
                     break;
+
                 // Alarm
                 case 3:
                     values.put(MediaStore.Audio.Media.IS_RINGTONE, false);
@@ -387,15 +328,10 @@ public class Tab3 extends Fragment {
             }
 
             values.put(MediaStore.Audio.Media.IS_MUSIC, false);
-
-            // Define a link(Uri) to the saved file and modify this link a little bit
-            // DATA is set by ContenValues and therefore has to be replaced
             Uri uri = MediaStore.Audio.Media.getContentUriForPath(soundfile.getAbsolutePath());
             getContext().getContentResolver().delete(uri, MediaStore.MediaColumns.DATA + "=\"" + soundfile.getAbsolutePath() + "\"", null);
-            // Fill the Uri with all the information from ContentValues
             Uri finalUri = getContext().getContentResolver().insert(uri, values);
 
-            // Finally set the audio as one of the system audio types
             switch (action){
 
                 // Ringtone
@@ -413,11 +349,11 @@ public class Tab3 extends Fragment {
             }
 
         } catch (Exception e){
-
-            // Log error if process failed
             Log.e( "Failed to save: ", "######");
         }
     }
 
 }
+
+
 
