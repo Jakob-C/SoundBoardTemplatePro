@@ -15,43 +15,5 @@
         android:layout_marginTop="10dp"
         android:icon="@drawable/shareimg" />
 
-    <item android:title="Mehr Apps: ">
-        <menu>
-
-            <item
-                android:id="@+id/soundboardapps"
-                android:icon="@drawable/playstore"
-                android:title="Alle Soundboards" />
-            <item
-                android:id="@+id/buttonapps"
-                android:icon="@drawable/button"
-                android:title="Alle Button Apps" />
-
-        </menu>
-    </item>
-
-
-    <item android:title="Kontakt">
-        <menu>
-            <!--<item-->
-                <!--android:id="@+id/paypaldialog"-->
-                <!--android:icon="@drawable/paypal"-->
-                <!--android:title="Unterstützung" />-->
-            <item
-                android:id="@+id/instagram"
-                android:icon="@drawable/instagramm"
-                android:title="Instagram" />
-            <item
-                android:id="@+id/email"
-                android:icon="@drawable/emailicon"
-                android:title="E-Mail schreiben" />
-            <item
-                android:id="@+id/rechtliches"
-                android:icon="@drawable/gesetzt"
-                android:title="Rechtliches" />
-
-
-        </menu>
-    </item>
 
 </menu>

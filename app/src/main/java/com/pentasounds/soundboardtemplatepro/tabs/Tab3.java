@@ -321,9 +321,7 @@ public class Tab3 extends Fragment {
         InputStream in = this.getResources().openRawResource(soundfiles[pos]);
 
         try{
-            if(MainActivity.isTesting){
-                Toast.makeText(getContext(),"Sound Saved", Toast.LENGTH_SHORT).show();
-            }
+
             // Log the name of the sound that is being saved
             Log.e("Saving sound ","#############");
 

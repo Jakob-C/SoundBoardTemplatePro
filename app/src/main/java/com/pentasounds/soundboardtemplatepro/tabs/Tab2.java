@@ -48,9 +48,7 @@ public class Tab2 extends Fragment {
     GridView myGridView;
     int position;
     View layout;
-    //    File soundfile;
     File directory;
-    String filename;
 
     public String[] items1 ={
             "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
@@ -92,7 +90,6 @@ public class Tab2 extends Fragment {
         layout=rootView.findViewById(R.id.sprueche);
         File storage = Environment.getExternalStorageDirectory();
         directory = new File(storage.getAbsolutePath() +"/"+R.string.foldername+"/");
-//        soundfile=new File(directory, filename);
 
 
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
@@ -328,9 +325,7 @@ public class Tab2 extends Fragment {
         InputStream in = this.getResources().openRawResource(soundfiles[pos]);
 
         try{
-            if(MainActivity.isTesting){
-                Toast.makeText(getContext(),"Sound Saved", Toast.LENGTH_SHORT).show();
-            }
+
             // Log the name of the sound that is being saved
             Log.e("Saving sound ","#############");
 
