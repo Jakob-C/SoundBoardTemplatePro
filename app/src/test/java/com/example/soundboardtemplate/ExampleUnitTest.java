@@ -1,4 +1,4 @@
-package com.pentasounds.soundboardtemplatepro;
+package com.example.soundboardtemplate;
 
 import org.junit.Test;
 

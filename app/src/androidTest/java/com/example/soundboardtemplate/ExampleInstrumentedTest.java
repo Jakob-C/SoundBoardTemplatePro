@@ -1,4 +1,4 @@
-package com.pentasounds.soundboardtemplatepro;
+package com.example.soundboardtemplate;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

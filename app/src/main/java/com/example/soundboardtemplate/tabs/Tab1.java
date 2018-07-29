@@ -1,4 +1,4 @@
-package com.pentasounds.soundboardtemplatepro.tabs;
+package com.example.soundboardtemplate.tabs;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -31,8 +31,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.pentasounds.soundboardtemplatepro.MainActivity;
-import com.pentasounds.soundboardtemplatepro.R;
+import com.example.soundboardtemplate.MainActivity;
+import com.example.soundboardtemplate.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -52,31 +52,17 @@ public class Tab1 extends Fragment {
 
     // Here you can change the displayed text on the buttons in Tab1
     public String[] items ={
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha"
+            "Bee Buzzing", "Parrot", "Cat", "Dog","Elephant",
+            "Horse", "Lion","Mosquito", "Pig", "Rooster",
+            "(Add more)", "(Add more)", "(Add more)", "(Add more)", "(Add more)"
     };
 
     // Here you can change the mp3 files of the buttons in Tab1
     public static int[] soundfiles ={
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
+            R.raw.bee, R.raw.parrot, R.raw.cat, R.raw.dog, R.raw.elephant,
+            R.raw.horse, R.raw.lion, R.raw.mosquito, R.raw.pig ,R.raw.rooster,
+            R.raw.examplesound, R.raw.examplesound, R.raw.examplesound, R.raw.examplesound, R.raw.examplesound
+
     };
 
 
@@ -90,11 +76,6 @@ public class Tab1 extends Fragment {
         layout=rootView.findViewById(R.id.tab1);
         File storage = Environment.getExternalStorageDirectory();
         directory = new File(storage.getAbsolutePath() +"/"+R.string.foldername+"/");
-
-        // Banner Ad
-        AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
         // GridView
         myGridView = (GridView)rootView.findViewById(R.id.tabOneGridView);

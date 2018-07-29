@@ -1,4 +1,4 @@
-package com.pentasounds.soundboardtemplatepro;
+package com.example.soundboardtemplate;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.pentasounds.soundboardtemplatepro.tabs.Tab1;
-import com.pentasounds.soundboardtemplatepro.tabs.Tab2;
-import com.pentasounds.soundboardtemplatepro.tabs.Tab3;
+import com.example.soundboardtemplate.tabs.Tab1;
+import com.example.soundboardtemplate.tabs.Tab2;
+import com.example.soundboardtemplate.tabs.Tab3;
 
 
 public class TabFragment extends Fragment {

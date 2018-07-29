@@ -19,8 +19,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="backgroundColor" value="ffd700" />
-                                      <entry key="imageAsset" value="C:\Users\aaron\Desktop\Icon.png" />
+                                      <entry key="backgroundColor" value="f8e8ff" />
+                                      <entry key="iconShape" value="NONE" />
+                                      <entry key="imageAsset" value="C:\Users\aaron\Desktop\IconForTemplate.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

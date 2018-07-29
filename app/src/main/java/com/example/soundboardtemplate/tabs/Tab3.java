@@ -1,4 +1,4 @@
-package com.pentasounds.soundboardtemplatepro.tabs;
+package com.example.soundboardtemplate.tabs;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -31,8 +31,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.pentasounds.soundboardtemplatepro.MainActivity;
-import com.pentasounds.soundboardtemplatepro.R;
+import com.example.soundboardtemplate.MainActivity;
+import com.example.soundboardtemplate.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -51,31 +51,17 @@ public class Tab3 extends Fragment {
 
     // Here you can change the displayed text on the buttons in Tab3
     public String[] items ={
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha",
-            "Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha","Aha"
+            "Arrow Hit","Car","Firework","Glass Breaking","Piano",
+            "Spooky Wind","(Add more)","(Add more)","(Add more)","(Add more)",
+            "(Add more)","(Add more)","(Add more)","(Add more)","(Add more)"
     };
 
     // Here you can change the mp3 files of the buttons in Tab3
     public static int[] soundfiles ={
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
-            R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,R.raw.aha,
+            R.raw.arrowhit,R.raw.car,R.raw.firework,R.raw.glassbreaking,R.raw.piano,
+            R.raw.spookywind,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,
+            R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,
+
     };
 
 
@@ -90,10 +76,6 @@ public class Tab3 extends Fragment {
         File storage = Environment.getExternalStorageDirectory();
         directory = new File(storage.getAbsolutePath() +"/"+R.string.foldername+"/");
 
-        // Banner Ad
-        AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
         // GridView
         myGridView = (GridView)rootView.findViewById(R.id.tabThreeGridView);

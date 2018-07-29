@@ -1,4 +1,4 @@
-package com.pentasounds.soundboardtemplatepro;
+package com.example.soundboardtemplate;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -14,9 +14,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.pentasounds.soundboardtemplatepro.tabs.Tab3;
-import com.pentasounds.soundboardtemplatepro.tabs.Tab1;
-import com.pentasounds.soundboardtemplatepro.tabs.Tab2;
+import com.example.soundboardtemplate.tabs.Tab3;
+import com.example.soundboardtemplate.tabs.Tab1;
+import com.example.soundboardtemplate.tabs.Tab2;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.io.File;
 
@@ -32,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // Banner Ad
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         toolbarTabs();
         sidebar();

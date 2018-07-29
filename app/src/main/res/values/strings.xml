@@ -1,7 +1,7 @@
 <resources>
 
-    <string name="app_name">Soundboard Templ Pro</string>
-    <string name="package_name">com.pentasounds.soundboardtemplatepro</string>
+    <string name="app_name">Soundboard Template</string>
+    <string name="package_name">com.pentasounds.soundboardtemplate</string>
 
 
     <!--Ad-->
@@ -11,9 +11,9 @@
 
 
     <!--Tab names-->
-    <string name="tab1">tab1</string>
-    <string name="tab2">tab2</string>
-    <string name="tab3">tab3</string>
+    <string name="tab1">Animals</string>
+    <string name="tab2">Human</string>
+    <string name="tab3">Effects</string>
 
     <!--Share app-->
     <string name="playstore_link">-PUT THE LINK TO YOUR APP HERE-</string>
