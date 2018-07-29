@@ -1,4 +1,4 @@
-package com.example.soundboardtemplate;
+package com.yourdevelopername.yourappname;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -14,9 +14,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.soundboardtemplate.tabs.Tab3;
-import com.example.soundboardtemplate.tabs.Tab1;
-import com.example.soundboardtemplate.tabs.Tab2;
+import com.yourdevelopername.yourappname.tabs.Tab3;
+import com.yourdevelopername.yourappname.tabs.Tab1;
+import com.yourdevelopername.yourappname.tabs.Tab2;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 

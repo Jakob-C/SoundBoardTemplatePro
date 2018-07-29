@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Soundboard Template</string>
-    <string name="package_name">com.pentasounds.soundboardtemplate</string>
+    <string name="package_name">com.yourdevelopername.yourappname</string>
 
 
     <!--Ad-->

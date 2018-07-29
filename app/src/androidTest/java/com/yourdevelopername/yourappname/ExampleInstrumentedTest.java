@@ -1,4 +1,4 @@
-package com.example.soundboardtemplate;
+package com.yourdevelopername.yourappname;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

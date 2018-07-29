@@ -2,10 +2,11 @@
 <resources>
 
 
+    <color name="iconbar">#00A221</color>
+    <color name="main_color">#00DC2D</color>
+    <color name="button_start_color">#37474F</color>
+    <color name="button_end_color">#777e93</color>
     <color name="black">#000</color>
-    <color name="orange">#00DC2D</color>
     <color name="white">#FFF</color>
-    <color name="second">#00A221</color>
-
 
 </resources>

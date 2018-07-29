@@ -1,4 +1,4 @@
-package com.example.soundboardtemplate.tabs;
+package com.yourdevelopername.yourappname.tabs;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -29,10 +29,8 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.example.soundboardtemplate.MainActivity;
-import com.example.soundboardtemplate.R;
+import com.yourdevelopername.yourappname.MainActivity;
+import com.yourdevelopername.yourappname.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

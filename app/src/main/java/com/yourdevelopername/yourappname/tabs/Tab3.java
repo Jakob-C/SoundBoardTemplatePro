@@ -1,4 +1,4 @@
-package com.example.soundboardtemplate.tabs;
+package com.yourdevelopername.yourappname.tabs;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -29,10 +29,8 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.example.soundboardtemplate.MainActivity;
-import com.example.soundboardtemplate.R;
+import com.yourdevelopername.yourappname.MainActivity;
+import com.yourdevelopername.yourappname.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,7 +38,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class Tab2 extends Fragment {
+public class Tab3 extends Fragment {
     GridView myGridView;
     int position;
     View layout;
@@ -49,18 +47,19 @@ public class Tab2 extends Fragment {
 
 // Important notice: make sure that the number of items in "String[] items" is equal to the number of items in "soundfiles"!
 
-    // Here you can change the displayed text on the buttons in Tab2
+    // Here you can change the displayed text on the buttons in Tab3
     public String[] items ={
-            "Baby","Heart Beat","Laugh","(Add more)","(Add more)",
-            "(Add more)","(Add more)","(Add more)","(Add more)","(Add more)",
+            "Arrow Hit","Car","Firework","Glass Breaking","Piano",
+            "Spooky Wind","(Add more)","(Add more)","(Add more)","(Add more)",
             "(Add more)","(Add more)","(Add more)","(Add more)","(Add more)"
     };
 
-    // Here you can change the mp3 files of the buttons in Tab2
+    // Here you can change the mp3 files of the buttons in Tab3
     public static int[] soundfiles ={
-            R.raw.baby,R.raw.heartbeating,R.raw.laughing,R.raw.examplesound,R.raw.examplesound,
+            R.raw.arrowhit,R.raw.car,R.raw.firework,R.raw.glassbreaking,R.raw.piano,
+            R.raw.spookywind,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,
             R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,
-            R.raw.examplesound,R.raw.examplesound,R.raw.examplesound,R.raw.examplesound, R.raw.examplesound
+
     };
 
 
@@ -70,14 +69,14 @@ public class Tab2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView=inflater.inflate(R.layout.tab2_layout,container,false);
-        layout=rootView.findViewById(R.id.tab2);
+        View rootView=inflater.inflate(R.layout.tab3_layout,container,false);
+        layout=rootView.findViewById(R.id.tab3);
         File storage = Environment.getExternalStorageDirectory();
         directory = new File(storage.getAbsolutePath() +"/"+R.string.foldername+"/");
 
 
         // GridView
-        myGridView = (GridView)rootView.findViewById(R.id.tabTwoGridView);
+        myGridView = (GridView)rootView.findViewById(R.id.tabThreeGridView);
         myGridView.setAdapter(new CustomGridAdapter(getActivity(), items));
         myGridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -170,7 +169,7 @@ public class Tab2 extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (context instanceof MainActivity) {
-                        ((MainActivity) context).TabTwoItemClicked(position);
+                        ((MainActivity) context).TabThreeItemClicked(position);
                     }
                 }
             });
@@ -335,4 +334,6 @@ public class Tab2 extends Fragment {
     }
 
 }
+
+
 

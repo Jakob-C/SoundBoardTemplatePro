@@ -1,4 +1,4 @@
-package com.example.soundboardtemplate;
+package com.yourdevelopername.yourappname;
 
 import org.junit.Test;
 
